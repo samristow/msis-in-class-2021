@@ -1,0 +1,21 @@
+body {}
+
+
+.student {
+    margin: 10px 2px;
+    padding: 4px;
+    border: 1px solid silver;
+    background-color: blue;
+}
+
+.selected {
+    background-color: cyan;
+}
+
+.userName {
+    font-weight:bold;
+}
+
+.studentName{
+    color:turquoise;
+}

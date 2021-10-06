@@ -9,19 +9,24 @@ $db = DbConnection::getConnection();
 $sql = 'SELECT * FROM student';
 $vars = [];
 
-// if (isset($_GET['guid'])) {
-//   // This is an example of a parameterized query
-//   $sql = 'SELECT * FROM Patient WHERE patientGuid = ?';
-//   $vars = [ $_GET['guid'] ];
-// }
+if (isset($_GET['student'])) {
+   //This is an example of a parameterized query
+   $sql = 'SELECT * FROM offer WHERE studentId = ?';
+    $vars = [ $_GET['student'] ];
+    /*parameterized query
+    parameterized queries prevents sql injection
+    in top 5 website security issues
+    */
+
+}
 
 $stmt = $db->prepare($sql);
 $stmt->execute($vars);
 
-$patients = $stmt->fetchAll();
+$students = $stmt->fetchAll();
 
 // Step 3: Convert to JSON
-$json = json_encode($patients, JSON_PRETTY_PRINT);
+$json = json_encode($students, JSON_PRETTY_PRINT);
 
 // Step 4: Output
 header('Content-Type: application/json');
