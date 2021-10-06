@@ -1,21 +1,28 @@
 <?php
-
+// require 'common.php';
 require 'class/DbConnection.php';
 
-echo 'test';
-
+// Step 1: Get a datase connection from our helper class
 $db = DbConnection::getConnection();
 
-$sql = 'SELECT * from Student';
+// Step 2: Create & run the query
+$sql = 'SELECT * FROM student';
 $vars = [];
 
+// if (isset($_GET['guid'])) {
+//   // This is an example of a parameterized query
+//   $sql = 'SELECT * FROM Patient WHERE patientGuid = ?';
+//   $vars = [ $_GET['guid'] ];
+// }
 
-$stmt = $db->perpare($sql);
+$stmt = $db->prepare($sql);
 $stmt->execute($vars);
 
-$patients = $stmt->fetchALL();
+$patients = $stmt->fetchAll();
 
-$json = json_encode($student, JSON_PRETTY_PRINT);
+// Step 3: Convert to JSON
+$json = json_encode($patients, JSON_PRETTY_PRINT);
 
+// Step 4: Output
 header('Content-Type: application/json');
 echo $json;
